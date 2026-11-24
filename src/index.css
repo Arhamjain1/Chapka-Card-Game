@@ -1,0 +1,197 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-ink: #080d0c;
+  --color-forest: #0b241d;
+  --color-emerald: #10382c;
+  --color-felt: #16503e;
+  --color-gold: #c8a45d;
+  --color-gold-soft: #e2c98f;
+  --color-ivory: #f2ebdd;
+  --color-bronze: #80663d;
+  --color-crimson: #a8242c;
+
+  --font-serif: 'Cormorant Garamond', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+  --font-sans: 'Inter Variable', Inter, -apple-system, 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background: var(--color-ink);
+  color: var(--color-ivory);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+button:not(:disabled) {
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 1.5px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+.label-caps {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* The room: a dark lounge lit from above the table. */
+.room {
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 40%, rgba(200, 164, 93, 0.07), transparent 70%),
+    radial-gradient(ellipse 120% 90% at 50% 45%, #0e1f1a 0%, #0a1512 45%, var(--color-ink) 100%);
+}
+
+.room::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 85% 75% at 50% 45%, transparent 55%, rgba(0, 0, 0, 0.55) 100%);
+}
+
+.table-shadow {
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.75) 35%, transparent 70%);
+  filter: blur(18px);
+}
+
+.table-rail {
+  border-radius: 50%;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.07), transparent 22%),
+    linear-gradient(180deg, #3a2d1b 0%, #231a0f 45%, #120d07 100%);
+  box-shadow:
+    0 0 0 1.5px var(--color-gold),
+    0 0 0 3px rgba(8, 13, 12, 0.9),
+    0 26px 50px rgba(0, 0, 0, 0.6),
+    inset 0 2px 3px rgba(255, 236, 190, 0.18),
+    inset 0 -6px 12px rgba(0, 0, 0, 0.7);
+}
+
+.table-felt {
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 36%, rgba(242, 235, 221, 0.09), transparent 70%),
+    radial-gradient(ellipse at 50% 42%, #1a5b47 0%, var(--color-emerald) 48%, var(--color-forest) 100%);
+  box-shadow:
+    0 0 0 1px rgba(200, 164, 93, 0.55),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.5),
+    inset 0 10px 28px rgba(0, 0, 0, 0.55),
+    inset 0 -4px 18px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+
+.felt-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0.6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.felt-line {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(200, 164, 93, 0.22);
+}
+
+/* Cards */
+.card-3d {
+  transform-style: preserve-3d;
+}
+
+.card-face,
+.card-back {
+  position: absolute;
+  inset: 0;
+  border-radius: 7%/5%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+}
+
+.card-face {
+  background: linear-gradient(160deg, #fdfaf3 0%, #f6f0e3 55%, #ece3d0 100%);
+  box-shadow:
+    0 0 0 0.5px rgba(60, 46, 24, 0.55),
+    0 1px 1px rgba(0, 0, 0, 0.35),
+    0 6px 14px rgba(0, 0, 0, 0.38);
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  background-color: var(--color-forest);
+  background-size: 100% 100%;
+  box-shadow:
+    0 0 0 0.5px rgba(200, 164, 93, 0.65),
+    0 1px 1px rgba(0, 0, 0, 0.4),
+    0 6px 14px rgba(0, 0, 0, 0.42);
+}
+
+.card-sheen {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(125deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 32%, rgba(120, 90, 40, 0.07) 100%);
+}
+
+.gold-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200, 164, 93, 0.7), transparent);
+}
+
+.panel {
+  background: linear-gradient(180deg, rgba(20, 38, 32, 0.92), rgba(9, 17, 15, 0.94));
+  box-shadow:
+    0 0 0 1px rgba(200, 164, 93, 0.22),
+    0 18px 40px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(242, 235, 221, 0.06);
+}
+
+@keyframes arc-travel {
+  to {
+    stroke-dashoffset: -1000;
+  }
+}
+
+@keyframes soft-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.pulse {
+  animation: soft-pulse 1.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse {
+    animation: none;
+  }
+}
